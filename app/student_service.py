@@ -1,3 +1,5 @@
+import itertools
+
 from app.errors import *
 from app.student import Student
 
@@ -6,6 +8,7 @@ class StudentService:
 
     def __init__(self):
         self.student_lst = []
+        self.student_id = itertools.count()
 
     def get_student_by_id(self, student_id):
         for student in self.student_lst:
@@ -18,7 +21,7 @@ class StudentService:
             if student_name == student.name:
                 raise InstanceExistError(
                     "Student with {0} has already existed".format(student_name))
-        new_student = Student(student_name)
+        new_student = Student(student_name, next(self.student_id))
         self.student_lst.append(new_student)
 
     def remove_student(self, student_id):

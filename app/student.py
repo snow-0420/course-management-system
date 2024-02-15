@@ -2,11 +2,9 @@ class Student:
     """
     Class that implements a student.
     """
-    student_id = 0
 
-    def __init__(self, student_name):
+    def __init__(self, student_name, student_id):
         self.name = student_name
-        self.id = Student.student_id
-        Student.student_id += 1
+        self.id = student_id
         self.enrolled_courses = []
         self.assignments = {}  # {Assignment_id: Grade}
